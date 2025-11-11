@@ -1,7 +1,7 @@
 def primo(n):
 
-    for i in range(2, n):
-        if n % i == 0:
+    for n in range(2, n):
+        if n % n == 0:
             print("No es primo")
             return True
 

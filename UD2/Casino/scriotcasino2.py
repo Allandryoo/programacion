@@ -25,8 +25,9 @@ def media():
 
 def estadisticas():   
     for i in range(1,7): 
-        for pares in len(base_datos_dados):
-            print(f"El dado {i} ha aparecido {pares} veces")
+        for col1,col2 in len(base_datos_dados):
+            numero_veces=base_datos_dados[i]
+            print(f"El dado {i} ha aparecido {numero_veces} veces")
 
 def porcentaje():
     for i in range(1,7):

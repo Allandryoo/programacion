@@ -1,23 +1,17 @@
 import random
 
-<<<<<<< HEAD
 opciones = ["Salir", "Tirar dado",
             "Media aritmetica", "Estadisticas", "Porcentajes"]
 opcion = True
 base_datos_dados = []
+num1 = 0
+num2 = 0
+num3 = 0
+num4 = 0
+num5 = 0
+num6 = 0
 
 
-=======
-opciones=["Salir", "Tirar dado", "Media aritmetica", "Estadisticas", "Porcentajes"]
-opcion=True
-base_datos_dados=[]
-num1=0
-num2=0
-num3=0
-num4=0
-num5=0
-num6=0
->>>>>>> f998735fc23a5e96b649fbb9c4963cedc31136fe
 def lanzar_dado():
     numero = (random.randint(1, 6), random.randint(1, 6))
     base_datos_dados.append(numero)
@@ -38,47 +32,37 @@ def media():
     media = sumador/contador
     print(media)
 
-<<<<<<< HEAD
 
 def estadisticas():
-    for i in range(0, 6):
-        for par1, par2 in len(base_datos_dados):
-            numero_veces += base_datos_dados.count(par1)
-            numero_veces2 += base_datos_dados.count(par2)
-        pares = numero_veces+numero_veces2
+    for col1, col2 in base_datos_dados:
+        if col1 == 1:
+            num1+1
+        elif col1 == 2:
+            num2 += 1
+        elif col1 == 3:
+            num3 += 1
+        elif col1 == 4:
+            num4 += 1
+        elif col1 == 5:
+            num5 += 1
+        elif col1 == 6:
+            num6 += 1
 
-        print(f"El dado {i+1} ha aparecido {pares} veces")
-=======
-def estadisticas():   
-    for col1,col2 in base_datos_dados: 
-        if col1==1:
+        if col2 == 1:
             num1+1
-        elif col1==2:
-            num2+=1
-        elif col1==3:
-            num3+=1
-        elif col1==4:
-            num4+=1
-        elif col1==5:
-            num5+=1
-        elif col1==6:
-            num6+=1
-        
-        if col2==1:
-            num1+1
-        elif col2==2:
-            num2+=1
-        elif col2==3:
-            num3+=1
-        elif col2==4:
-            num4+=1
-        elif col2==5:
-            num5+=1
-        elif col2==6:
-            num6+=1
+        elif col2 == 2:
+            num2 += 1
+        elif col2 == 3:
+            num3 += 1
+        elif col2 == 4:
+            num4 += 1
+        elif col2 == 5:
+            num5 += 1
+        elif col2 == 6:
+            num6 += 1
+
 
 print()
->>>>>>> f998735fc23a5e96b649fbb9c4963cedc31136fe
 
 
 def porcentaje():

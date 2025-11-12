@@ -3,7 +3,12 @@ import random
 opciones=["Salir", "Tirar dado", "Media aritmetica", "Estadisticas", "Porcentajes"]
 opcion=True
 base_datos_dados=[]
-
+num1=0
+num2=0
+num3=0
+num4=0
+num5=0
+num6=0
 def lanzar_dado():
     numero=(random.randint(1,6),random.randint(1,6))
     base_datos_dados.append(numero)
@@ -24,10 +29,35 @@ def media():
     print(media)
 
 def estadisticas():   
-    for i in range(1,7): 
-        for col1,col2 in len(base_datos_dados):
-            numero_veces=base_datos_dados[i]
-            print(f"El dado {i} ha aparecido {numero_veces} veces")
+    for col1,col2 in base_datos_dados: 
+        if col1==1:
+            num1+1
+        elif col1==2:
+            num2+=1
+        elif col1==3:
+            num3+=1
+        elif col1==4:
+            num4+=1
+        elif col1==5:
+            num5+=1
+        elif col1==6:
+            num6+=1
+        
+        if col2==1:
+            num1+1
+        elif col2==2:
+            num2+=1
+        elif col2==3:
+            num3+=1
+        elif col2==4:
+            num4+=1
+        elif col2==5:
+            num5+=1
+        elif col2==6:
+            num6+=1
+
+print()
+
 
 def porcentaje():
     for i in range(1,7):

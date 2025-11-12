@@ -1,47 +1,54 @@
 import random
 
-opciones=["Salir", "Tirar dado", "Media aritmetica", "Estadisticas", "Porcentajes"]
-opcion=True
-base_datos_dados=[]
+opciones = ["Salir", "Tirar dado",
+            "Media aritmetica", "Estadisticas", "Porcentajes"]
+opcion = True
+base_datos_dados = []
+
 
 def lanzar_dado():
-    numero=(random.randint(1,6),random.randint(1,6))
+    numero = (random.randint(1, 6), random.randint(1, 6))
     base_datos_dados.append(numero)
-    pintar_dado(numero[0],numero[1])
+    pintar_dado(numero[0], numero[1])
     print(base_datos_dados)
-    
 
-def pintar_dado(x,y):
+
+def pintar_dado(x, y):
     print("###   ###")
     print(f"#{x}#   #{y}#")
     print("###   ###")
 
+
 def media():
-    sumador=sum(sum(tuplas) for tuplas in base_datos_dados)
+    sumador = sum(sum(tuplas) for tuplas in base_datos_dados)
     print(sumador)
-    contador=len(base_datos_dados)
-    media=sumador/contador
+    contador = len(base_datos_dados)
+    media = sumador/contador
     print(media)
 
-def estadisticas():   
-    for i in range(1,7): 
-        for pares in len(base_datos_dados):
-            print(f"El dado {i} ha aparecido {pares} veces")
+
+def estadisticas():
+    for i in range(0, 6):
+        for par1, par2 in len(base_datos_dados):
+            numero_veces += base_datos_dados.count(par1)
+            numero_veces2 += base_datos_dados.count(par2)
+        pares = numero_veces+numero_veces2
+
+        print(f"El dado {i+1} ha aparecido {pares} veces")
+
 
 def porcentaje():
-    for i in range(1,7):
-        porcentaje=(base_datos_dados.count(i)*100/len(base_datos_dados))
+    for i in range(1, 7):
+        porcentaje = (base_datos_dados.count(i)*100/len(base_datos_dados))
         print(f"El porcentaje de {i} es {porcentaje}%")
-    
-
 
 
 while opcion == True:
     print("Indica una opcion:")
-    for indice,valor in enumerate(opciones):
+    for indice, valor in enumerate(opciones):
         print(f"pulsa {indice} para: {valor}")
-    
-    opcion=int(input("Escoge una opcion:\n"))
+
+    opcion = int(input("Escoge una opcion:\n"))
 
     if opcion == 0:
         opcion == False
@@ -57,12 +64,11 @@ while opcion == True:
 
     elif opcion == 3:
         print("Has solicitdo las estadisticas")
-        for i in range(0,len(base_datos_dados)):
-            estadisticas()
+        estadisticas()
 
     elif opcion == 4:
         print("Has solicitado el porcentaje de los numeros")
         porcentaje()
 
     else:
-        opcion=int(input("Escoge una opcion:\n"))
+        opcion = int(input("Escoge una opcion:\n"))

@@ -1,7 +1,10 @@
 import random
 
-opciones = ["Salir", "Tirar dado",
-            "Media aritmetica", "Estadisticas", "Porcentajes"]
+opciones = ["Salir",
+            "Tirar dado",
+            "Media aritmetica",
+            "Estadisticas",
+            "Porcentajes"]
 opcion = True
 base_datos_dados = []
 num1 = 0
@@ -36,7 +39,7 @@ def media():
 def estadisticas():
     for col1, col2 in base_datos_dados:
         if col1 == 1:
-            num1+1
+            num1 += 1
         elif col1 == 2:
             num2 += 1
         elif col1 == 3:
@@ -49,7 +52,7 @@ def estadisticas():
             num6 += 1
 
         if col2 == 1:
-            num1+1
+            num1 += 1
         elif col2 == 2:
             num2 += 1
         elif col2 == 3:

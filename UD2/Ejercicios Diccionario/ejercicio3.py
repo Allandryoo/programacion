@@ -1,4 +1,5 @@
 alumno={"nombre": "alan", "edad":23, "curso":"segundo"}
 
-print(alumno["nombre"])
-print(alumno["edad"])
+alumno.update({"nota_final":9,"edad":21})
+
+print(alumno)

@@ -40,6 +40,15 @@ def agregar_genero(genero_agregado):
     generos.append(genero_agregado)
 
 
+def info_pelicula(nom_pelicula):
+
+    for llave, valores in BBDD.items():
+        if nom_pelicula in llave:
+            print(llave, valores)
+        else:
+            print("El nombre de pelicula introducido no existe")
+
+
 while not salir:
 
     for indice, valor in enumerate(opciones):
@@ -94,4 +103,10 @@ while not salir:
 
             print(f"La duracion total de las peliculas es {suma_duracion}")
 
+            suma_duracion = 0
+
     elif opcion == 5:
+
+        info_peli = input("Indique la pelicula de la que desea informacion\n")
+
+        info_pelicula(info_peli)

@@ -25,34 +25,81 @@ generos = [
 ]
 
 salir = False
-suma_duracion = 0
 
 
-def agregar_pelicula(nombre, duracion, genero):
+def agregar_pelicula():
+
+    nombre = input("Indique el nombre de la pelicula\n")
+
+    duracion = int(input("Indique la durcion de la pelicula\n"))
+
+    for pos, gen in enumerate(generos, 1):
+        print(f"Para escoger {gen} presione {pos}")
+
+    posicion_generos = int(input("indique el genero de la pelicula\n"))
+    genero = generos[posicion_generos-1]
 
     BBDD.update(
         {nombre: {"nombre": nombre, "duracion": duracion, "genero": genero}}
     )
+    print(BBDD)
 
 
-def agregar_genero(genero_agregado):
+def agregar_genero():
 
+    genero_agregado = input("indique el genero a agregar\n")
     generos.append(genero_agregado)
+    print(generos)
 
 
-def info_pelicula(nom_pelicula):
+def listar():
 
-    for llave, valores in BBDD.items():
-        if nom_pelicula in llave:
-            print(llave, valores)
-        else:
-            print("El nombre de pelicula introducido no existe")
+    for valor_listado in BBDD.values():
+        print(
+            f"La pelicula {valor_listado["nombre"]}, tiene una duracion de {valor_listado["duracion"]} y su genero es {valor_listado["genero"]}."
+        )
+
+
+def listado_detallado():
+
+    suma_duracion = 0
+    detalles = input("Indique el detalle que desea ver\n")
+
+    if not detalles == "duracion":
+
+        for valor_detallado in BBDD.values():
+            print(valor_detallado[detalles])
+    else:
+
+        for valor_detallado in BBDD.values():
+            print(valor_detallado[detalles])
+            suma_duracion += valor_detallado[detalles]
+
+        print(f"La duracion total de las peliculas es {suma_duracion}")
+
+        suma_duracion = 0
+
+
+def info_pelicula():
+
+    nom_pelicula = input("Indique la pelicula de la que desea informacion\n")
+
+    if nom_pelicula in BBDD.keys():
+        print(BBDD[nom_pelicula])
+    else:
+        print("El nombre de pelicula introducido no existe")
+
+
+def detalle_pelicula():
+
+    nombre_pelicula = input(
+        "Indique el nombre de la pelicula cual desea ver la informacion\n")
 
 
 while not salir:
 
-    for indice, valor in enumerate(opciones):
-        print(f"Pulsa {indice} para: {valor}")
+    for indice, valor_opciones in enumerate(opciones):
+        print(f"Pulsa {indice} para: {valor_opciones}")
 
     opcion = int(input("Escoge una opcion\n"))
 
@@ -63,50 +110,24 @@ while not salir:
 
     elif opcion == 1:
 
-        nombre_pelicula = input("Indique el nombre de la pelicula\n")
-
-        duracion_pelicula = int(input("Indique la durcion de la pelicula\n"))
-
-        for indice, gen in enumerate(generos, 1):
-            print(f"Para escoger {gen} presione {indice}")
-
-        posicion_generos = int(input("indique el genero de la pelicula\n"))
-        genero_pelicula = generos[posicion_generos-1]
-
-        agregar_pelicula(nombre_pelicula, duracion_pelicula, genero_pelicula)
+        agregar_pelicula()
 
     elif opcion == 2:
-        genero_sumado = input("indique el genero a agregar\n").lower
 
-        agregar_genero(genero_sumado)
-        print(generos)
+        agregar_genero()
 
     elif opcion == 3:
 
-        for key, valor in BBDD.items():
-            print(
-                f"La pelicula {valor["nombre"]}, tiene una duracion de {valor["duracion"]} y su genero es {valor["genero"]}.")
+        listar()
 
     elif opcion == 4:
 
-        detalles = input("Indique el detalle que desea ver\n")
-
-        if not detalles == "duracion":
-
-            for valor in BBDD.values():
-                print(valor[detalles])
-        else:
-
-            for valor in BBDD.values():
-                print(valor[detalles])
-                suma_duracion += valor[detalles]
-
-            print(f"La duracion total de las peliculas es {suma_duracion}")
-
-            suma_duracion = 0
+        listado_detallado()
 
     elif opcion == 5:
 
-        info_peli = input("Indique la pelicula de la que desea informacion\n")
+        info_pelicula()
 
-        info_pelicula(info_peli)
+    elif opcion == 6:
+
+        detalle_pelicula()

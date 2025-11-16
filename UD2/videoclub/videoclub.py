@@ -95,6 +95,32 @@ def detalle_pelicula():
     nombre_pelicula = input(
         "Indique el nombre de la pelicula cual desea ver la informacion\n")
 
+    valoresbd = BBDD.values()
+    i = 1
+    for value in valoresbd:
+        if i == 1:
+            print(f"indique el dato que desea ver {value.keys()}")
+            i += 1
+    detalles_pelicula = input("\n")
+
+    for key_detalle, valor_detalle in BBDD.items():
+        if key_detalle == nombre_pelicula and detalles_pelicula == "nombre":
+            print(
+                f"La pelicula {key_detalle} y su nombre es {valor_detalle[detalles_pelicula]}.")
+        elif key_detalle == nombre_pelicula and detalles_pelicula == "duracion":
+            print(
+                f"La pelicula {key_detalle} tiene una duracion de {valor_detalle[detalles_pelicula]}min.")
+        elif key_detalle == nombre_pelicula and detalles_pelicula == "genero":
+            print(
+                f"La pelicula {key_detalle} es del genero de {valor_detalle[detalles_pelicula]}.")
+
+
+def eliminar_pelicula():
+
+    nombre_borrar = input("Indique el nombre de la pelicula que desea borar\n")
+    BBDD.pop(nombre_borrar)
+    print(BBDD)
+
 
 while not salir:
 
@@ -131,3 +157,7 @@ while not salir:
     elif opcion == 6:
 
         detalle_pelicula()
+
+    elif opcion == 7:
+
+        eliminar_pelicula()

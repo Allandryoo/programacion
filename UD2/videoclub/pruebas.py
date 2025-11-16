@@ -4,17 +4,8 @@ BBDD = {
     "insidious": {"nombre": "insidious", "duracion": 105, "genero": "terror"}
 }
 
-info = input("nombre")
+nom = input("ads")
 
+BBDD.pop(nom)
 
-for genero in (BBDD.values()):
-    print(f"Indique que detalle desea ver {genero.keys()}")
-
-det = int(input(""))
-genpos = BBDD.values()[det]
-
-for key, values in BBDD.items():
-
-    if info in key:
-
-        print(f"{key} tiene una duracion de {values[genpos]}")
+print(BBDD)

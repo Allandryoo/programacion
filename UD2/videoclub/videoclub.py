@@ -56,7 +56,7 @@ def listar():
 
     for valor_listado in BBDD.values():
         print(
-            f"La pelicula {valor_listado["nombre"]}, tiene una duracion de {valor_listado["duracion"]} y su genero es {valor_listado["genero"]}."
+            f"La pelicula {valor_listado['nombre']}, tiene una duracion de {valor_listado['duracion']} y su genero es {valor_listado['genero']}."
         )
 
 
@@ -161,3 +161,6 @@ while not salir:
     elif opcion == 7:
 
         eliminar_pelicula()
+
+    else:
+        opcion=input("Vuelve a intentarlo")

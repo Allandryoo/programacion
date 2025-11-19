@@ -32,15 +32,14 @@ def media():
 
 
 def estadisticas():
-    contador=0
     for i in range(1,7):
+        contador=0
         for dado1, dado2 in base_datos_dados:
-            contador+=base_datos_dados.count(dado1)+base_datos_dados.count(dado2)
-            print(dado1,dado2)
+            if dado1 ==i:
+                contador+=1
+            if dado2 ==i:
+                contador+=1
         print(f"El dado {i} ha aparecido {contador} veces")
-
-print()
-
 
 def porcentaje():
     for i in range(1, 7):

@@ -19,7 +19,7 @@ menu_opciones=["Salir",
 
 def numero_random(lista_seleccionada):
 
-    numero_aleatorio=random.randint(1,len(lista_seleccionada)-1)
+    numero_aleatorio=random.randint(0,len(lista_seleccionada)-1)
     return numero_aleatorio
 
 def agregar_nombre():
@@ -65,7 +65,16 @@ def crear_cancion():
     cancion_creada=crear_frase()
     return cancion_creada
             
-
+def crear_cd(nombre_cd, num_canciones):
+    cancion_creada=""
+    for numero_cancion in range(1, num_canciones+1):
+        estrofas=int(input(f"Cuantas estrofas quieres en tu cancion {numero_cancion}: "))
+        versos=int(input("Cuantos versos quieres en cada estrofa: "))
+        for i in range(1, estrofas):
+            print("")
+            for j in range(1, versos):
+                cancion_creada+=crear_cancion()
+        discografia[nombre_cd]={cancion_creada}
 
 while not salir:
 
@@ -117,4 +126,14 @@ while not salir:
                 cancion_creada=crear_cancion()
                 print(cancion_creada)
         print("")
+
+    elif opcion== 9:
+
+        nombre_cd=input("Indica el nombre del cd\n")
+        num_canciones=int(input("Indica el numero de canciones para el cd.\n"))
+        crear_cd(nombre_cd,num_canciones)
+
+    elif opcion ==10:
+
+        print(discografia)
     

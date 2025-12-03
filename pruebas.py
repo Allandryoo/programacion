@@ -1,11 +1,11 @@
-contador =0
-base =2
-binario=input("binario\n")
-PosAct=len(binario)-1
-    
+import random
 
-for i in range(0,len(binario)):
-    contador += (int(binario[i])*base)**PosAct
-    PosAct-=1
+numrandom=random.randint(1,10)
 
-print(contador)
+print(numrandom)
+numero=int(input("Intenta adivinar el numero entre 1 y 10\n"))
+
+while numrandom!=numero:
+    numero=int(input("Intentalo de nuevo\n"))
+
+print("Acertaste")

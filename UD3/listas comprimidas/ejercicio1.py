@@ -1,5 +1,5 @@
 def contar():  
     contador=[numero for numero in range(1,11)]
-    print(contador)
+    return contador
 
-contar()
+print(contar())

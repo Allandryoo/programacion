@@ -1,11 +1,14 @@
-import random
+numero = int(input("indica un numero\n"))
 
-numrandom=random.randint(1,10)
+if numero % 2 == 0:
+    print("Es par")
+else:
+    print("Es impar")
 
-print(numrandom)
-numero=int(input("Intenta adivinar el numero entre 1 y 10\n"))
 
-while numrandom!=numero:
-    numero=int(input("Intentalo de nuevo\n"))
+div=numero//2
 
-print("Acertaste")
+if numero == div*2:
+    print("Es par")
+else:
+    print("Es impar")

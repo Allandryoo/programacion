@@ -6,10 +6,11 @@ class rectangulo:
 
     def calcular_area(self):
         return self.base * self.altura
-    
+
+
 base = int(input("Inidica la base\n"))
 altura = int(input("Indica la altura\n"))
 
-area=rectangulo(base,altura)
+area = rectangulo(base, altura)
 
 print("El area del rectangulo es " + str(area.calcular_area()))

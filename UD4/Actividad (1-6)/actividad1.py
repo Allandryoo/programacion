@@ -6,8 +6,9 @@ class Persona:
         self.sexo = sexo
 
     def presentar(self):
-        return "Hola soy " + self.nombre+ " " + self.apellidos + " y tengo " + str(self.edad) + " años"
-    
+        return "Hola soy " + self.nombre + " " + self.apellidos + " y tengo " + str(self.edad) + " años"
+
+
 persona1 = Persona("alan", "santos", 21, "M")
 persona2 = Persona("good", "boy", 18, "F")
 

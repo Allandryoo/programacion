@@ -14,13 +14,20 @@ class tablet:
         self.status = False
 
     def install_app(self, app_añadida):
-        for i in self.apps:
-            if app_añadida != i:
-                self.apps.append(app_añadida)
-            else:
-                print("Esta app ya existe")
 
-    #def uninstall_app(self):
+        if app_añadida in self.apps:
+            print("Esta app ya existe")
+        else:
+            self.apps.append(app_añadida)
+
+    def uninstall_app(self, app_elimiada):
+
+        if app_elimiada in self.apps:
+            self.apps.remove(app_elimiada)
+        else:
+            print("Esta app ya existe")
+
+    # def uninstall_app(self):
 
     def getapps(self):
         return self.apps
@@ -28,9 +35,15 @@ class tablet:
     def getstatus(self):
         return self.status
 
+
 apps = ["python", "java"]
 
-tablet1 = tablet("alan", 14, 6, apps, False)  
+tablet1 = tablet("alan", 14, 6, apps, False)
 print(tablet1.getstatus())
 print(tablet1.getapps())
-tablet1.install_app("java")
+tablet1.install_app("javascript")
+print(tablet1.getapps())
+tablet1.uninstall_app("java")
+print(tablet1.getapps())
+tablet1.power_on()
+print(tablet1.getstatus())

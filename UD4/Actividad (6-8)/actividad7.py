@@ -14,3 +14,19 @@ class libros:
 
     def get_genero(self):
         return self.genero
+    
+    def get_paginas(self):
+        return self.paginas
+    
+    def set_titulo(self, titulo):
+        self.titulo = titulo
+
+    def set_autor(self, autor):
+        self.autor = autor
+
+    def set_genero(self, genero):
+        self.genero = genero
+
+    def set_paginas(self, paginas):
+        self.paginas = paginas
+

@@ -22,15 +22,12 @@ class productos:
     
     def setNombre(self,newnom):
         self.nombre = newnom
-        return self.nombre
     
     def setPrecio(self,newpri):
         self.precio = newpri
-        return self.precio
 
     def setDescripcion(self,newdes):
         self.desccripcion = newdes
-        return self.desccripcion
     
     def set_stock(self, newstk):
         self.stock = newstk

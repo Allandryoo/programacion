@@ -71,7 +71,7 @@ def jugar(jugador, atacado):
     print(" \n")
 
 jugador1 = Personaje("Alan", 100, 20, 10)
-jugador2 = Personaje("Good boy", 100, 20, 10)
+jugador2 = Personaje("Carlos", 100, 20, 10)
 
 print(f"{jugador1.nombre} empieza con {jugador1.vida} de vida")
 print(f"{jugador2.nombre} empieza con {jugador2.vida} de vida")

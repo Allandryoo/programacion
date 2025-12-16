@@ -27,8 +27,6 @@ class tablet:
         else:
             print("Esta app ya existe")
 
-    # def uninstall_app(self):
-
     def getapps(self):
         return self.apps
 

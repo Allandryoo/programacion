@@ -25,7 +25,7 @@ class tablet:
         if app_elimiada in self.apps:
             self.apps.remove(app_elimiada)
         else:
-            print("Esta app ya existe")
+            print("Esta app no esta instalada")
 
     def getapps(self):
         return self.apps
@@ -41,7 +41,7 @@ print(tablet1.getstatus())
 print(tablet1.getapps())
 tablet1.install_app("javascript")
 print(tablet1.getapps())
-tablet1.uninstall_app("java")
+tablet1.uninstall_app("jºgava")
 print(tablet1.getapps())
 tablet1.power_on()
 print(tablet1.getstatus())

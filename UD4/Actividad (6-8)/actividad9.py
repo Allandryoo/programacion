@@ -13,12 +13,12 @@ class tablet:
     def power_off(self):
         self.status = False
 
-    def install_app(self, app_añadida):
+    def install_app(self, app_anadida):
 
-        if app_añadida in self.apps:
+        if app_anadida in self.apps:
             print("Esta app ya existe")
         else:
-            self.apps.append(app_añadida)
+            self.apps.append(app_anadida)
 
     def uninstall_app(self, app_elimiada):
 

@@ -1,5 +1,6 @@
 import random
-
+limitx=10
+limity=10
 class Persona:
     def __init__(self, nombre, resistencia, altura, posx, posy):
         self.nombre = nombre
@@ -17,7 +18,7 @@ class Persona:
             print(self.resistencia)
 
     def arriba(self):
-        if self.posy < 5:
+        if self.posy < limity:
             self.posy = self.posy + 1
             self.resistencia = self.resistencia - 1
         else:
@@ -41,7 +42,7 @@ class Persona:
         self.mostrar_posicion()
 
     def derecha(self):
-        if self.posx < 5:
+        if self.posx < limitx:
             self.posx = self.posx + 1
             self.resistencia = self.resistencia - 1
         else:
@@ -51,7 +52,7 @@ class Persona:
     def teletransporte(self):
         x = int(input("Posicion X: "))
         y = int(input("Posicion Y: "))
-        if x >= 0 and x <= 5 and y >= 0 and y <= 5:
+        if x >= 0 and x <= limitx and y >= 0 and y <= limity:
             self.posx = x
             self.posy = y
             self.resistencia = self.resistencia - 5
@@ -59,16 +60,25 @@ class Persona:
             print("No puedo moverme")
         self.mostrar_posicion()
 
+def mapa(ancho, alto, objeto_x=None, objeto_y=None, simbolo=" 1 "): 
+    mapa = [[" · " for _ in range(ancho)] for _ in range(alto)] 
+    if objeto_x is not None and objeto_y is not None: 
+        mapa[objeto_y][objeto_x] = simbolo 
+        for fila in mapa: 
+            print("".join(fila)) 
+
 aleatoriox = random.randint(0,5)
 aleatorioy = random.randint(0,5)
 
-persona1 = Persona("Alan", 10, 1.85, 0, 0)
+persona1 = Persona("Alan", 100, 1.85, 0, 0)
 print(f"Posicion actual:({persona1.posx}, {persona1.posy})")
 
 persona2 = Persona("Ionut", 10, 1.70, aleatoriox, aleatorioy)
 print(persona2.posx,persona2.posy)
 
 while persona1.resistencia > 0:
+
+    mapa(limitx, limity, persona1.posx, persona1.posy)
 
     if persona1.posx == persona2.posx and persona1.posy == persona2.posy:
         print(f"Muy bien atrapaste a {persona2.nombre}")

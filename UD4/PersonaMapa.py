@@ -17,6 +17,25 @@ class Persona:
             print("Has recuperado la resistencia")
             print(self.resistencia)
 
+        for p in pociones:
+            if p.misma_posicion(self):
+                p.posx=-1
+                p.posy=-1
+                self.resistencia=self.resistencia+10
+                pociones.remove(p)
+                print(pociones)
+
+
+    def usar_pocion(self, pocionpos):
+        if self.posx == pocionpos.posx and self.posy == pocionpos.posy:
+            print("Has encontrado un pocion recuperas 10 de resistencia")
+            self.resistencia += 10
+
+    def encontrar_dracula(self, dracula):
+        if persona1.posx == dracula.posx and persona1.posy == dracula.posy:
+            print(f"Te has encontrado a {dracula.nombre} pierdes 5 de energia")
+            self.resistencia -= 5
+
     def arriba(self):
         if self.posy < limity:
             self.posy = self.posy + 1
@@ -60,12 +79,17 @@ class Persona:
             print("No puedo moverme")
         self.mostrar_posicion()
 
-def mapa(ancho, alto, objeto_x=None, objeto_y=None, simbolo=" 1 "): 
-    mapa = [[" · " for _ in range(ancho)] for _ in range(alto)] 
-    if objeto_x is not None and objeto_y is not None: 
-        mapa[objeto_y][objeto_x] = simbolo 
-        for fila in mapa: 
-            print("".join(fila)) 
+class Pocion:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.posx = random.randint(0,5)
+        self.posy = random.randint(0,5)
+        print(f"Posicion de la pocion: X{self.posx} y{self.posy}")
+
+    def misma_posicion(self, persona):
+        if self.posx == persona.posx and self.posy == persona.posy:
+            print(f"Has obtenido la pocion {self.nombre}")
+            return True
 
 aleatoriox = random.randint(0,5)
 aleatorioy = random.randint(0,5)
@@ -73,15 +97,18 @@ aleatorioy = random.randint(0,5)
 persona1 = Persona("Alan", 100, 1.85, 0, 0)
 print(f"Posicion actual:({persona1.posx}, {persona1.posy})")
 
-persona2 = Persona("Ionut", 10, 1.70, aleatoriox, aleatorioy)
-print(persona2.posx,persona2.posy)
+dracula = Persona("Ionut", 10, 1.70, aleatoriox, aleatorioy)
+print(dracula.posx,dracula.posy)
+
+p1 = Pocion("Platano")
+p2 = Pocion("Manzana")
+p3 = Pocion("Kiwi")
+
+pociones=[p1,p2,p3]
 
 while persona1.resistencia > 0:
-
-    mapa(limitx, limity, persona1.posx, persona1.posy)
-
-    if persona1.posx == persona2.posx and persona1.posy == persona2.posy:
-        print(f"Muy bien atrapaste a {persona2.nombre}")
+    
+    persona1.encontrar_dracula(dracula)
 
     opcion = input("A donde quieres ir?\n")
 

@@ -5,38 +5,42 @@ class CuentaBancaria:
         self.iban = iban
 
     def obtener_saldo(self):
-        return f"saldo actual: {self.saldo}€"
-    
+        print(f"saldo actual: {self.saldo}€")
+
     def depositar(self, cantidaddeposito):
         if cantidaddeposito < 0:
             print("No puede ingresar una cantidad negativa")
         else:
             self.saldo = self.saldo + cantidaddeposito
-            return f"Has ingresado {cantidaddeposito}, Tu saldo ahora es de: {self.saldo}€"
+            print(
+                f"Has ingresado {cantidaddeposito}, Tu saldo ahora es de: {self.saldo}€")
 
     def retirar(self, cantidadretirada):
         if cantidadretirada <= self.saldo:
             self.saldo = self.saldo - cantidadretirada
-            return f"Has retirado {cantidadretirada}, Tu saldo ahora es de: {self.saldo}€"
+            print(
+                f"Has retirado {cantidadretirada}, Tu saldo ahora es de: {self.saldo}€")
         elif cantidadretirada < 0:
             print("No puede retirar una cantidad negativa")
         else:
             print("No dispone de tanta cantidad")
-    
+
     def transferencia(self, cantidatransferir, cuentadestino):
         if cantidatransferir <= self.saldo and cantidatransferir > 0:
             cuentadestino.saldo = cuentadestino.saldo + cantidatransferir
             self.saldo = self.saldo - cantidatransferir
-            return f"Has enviado {cantidatransferir}€ a {cuentadestino.nombre} con IBAN:{cuentadestino.iban}"
+            print(
+                f"Has enviado {cantidatransferir}€ a {cuentadestino.nombre} con IBAN:{cuentadestino.iban}")
         else:
             print("Cantidad erronea")
+
 
 class CuentaRecompensa(CuentaBancaria):
     def __init__(self, nombre, saldo, iban):
         super().__init__(nombre, saldo, iban)
 
     def obtener_saldo(self):
-        return f"saldo actual: {self.saldo}€"
+        print(f"saldo actual: {self.saldo}€")
 
     def transferencia(self, cantidatransferir, cuentadestino):
         if cantidatransferir <= self.saldo and cantidatransferir > 0:
@@ -50,6 +54,8 @@ class CuentaRecompensa(CuentaBancaria):
             print("No puede ingresar una cantidad negativa")
         else:
             self.saldo = self.saldo + (cantidaddeposito * 1.05)
+            print(
+                f"Has ingresado {cantidaddeposito}€ y se te ha añadido una bonificacion del 5%, Total:{cantidaddeposito*1.05}")
 
     def retirar(self, cantidadretirada):
         if cantidadretirada <= self.saldo:
@@ -59,12 +65,13 @@ class CuentaRecompensa(CuentaBancaria):
         else:
             print("No dispone de tanta cantidad")
 
+
 class CuentaAhorros(CuentaBancaria):
     def __init__(self, nombre, saldo, iban):
         super().__init__(nombre, saldo, iban)
 
     def obtener_saldo(self):
-        return f"saldo actual: {self.saldo}€"
+        print(f"saldo actual: {self.saldo}€")
 
     def transferencia(self, cantidatransferir, cuentadestino):
         if cantidatransferir <= self.saldo and cantidatransferir > 0:
@@ -86,6 +93,7 @@ class CuentaAhorros(CuentaBancaria):
             print("No puede retirar una cantidad negativa")
         else:
             print("No dispone de la cantidad suficiente")
+
 
 cuenta1 = CuentaBancaria("alan", 3000, 12345)
 cuenta2 = CuentaBancaria("boy", 100, 23456)

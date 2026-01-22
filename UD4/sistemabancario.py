@@ -1,3 +1,4 @@
+
 class CuentaBancaria:
     def __init__(self, nombre, saldo, iban):
         self.nombre = nombre
@@ -46,7 +47,8 @@ class CuentaRecompensa(CuentaBancaria):
         if cantidatransferir <= self.saldo and cantidatransferir > 0:
             cuentadestino.saldo = cuentadestino.saldo + cantidatransferir
             self.saldo = self.saldo - cantidatransferir
-            print(f"{self.nombre} has enviado {cantidatransferir}€ a {cuentadestino.nombre} con IBAN:{cuentadestino.iban}")
+            print(
+                f"{self.nombre} has enviado {cantidatransferir}€ a {cuentadestino.nombre} con IBAN:{cuentadestino.iban}")
         else:
             print("Cantidad erronea")
 
@@ -61,7 +63,8 @@ class CuentaRecompensa(CuentaBancaria):
     def retirar(self, cantidadretirada):
         if cantidadretirada <= self.saldo:
             self.saldo = self.saldo - cantidadretirada
-            print(f"{self.nombre} has retirado: {cantidadretirada}€, Saldo actual:{self.saldo}€")
+            print(
+                f"{self.nombre} has retirado: {cantidadretirada}€, Saldo actual:{self.saldo}€")
         elif cantidadretirada < 0:
             print("No puede retirar una cantidad negativa")
         else:
@@ -79,7 +82,8 @@ class CuentaAhorros(CuentaBancaria):
         if cantidatransferir <= self.saldo and cantidatransferir > 0:
             cuentadestino.saldo = cuentadestino.saldo + cantidatransferir
             self.saldo = self.saldo - cantidatransferir
-            print(f"{self.nombre} has enviado {cantidatransferir}€ a {cuentadestino.nombre} con IBAN:{cuentadestino.iban}")
+            print(
+                f"{self.nombre} has enviado {cantidatransferir}€ a {cuentadestino.nombre} con IBAN:{cuentadestino.iban}")
         else:
             print("Cantidad erronea")
 
@@ -88,12 +92,14 @@ class CuentaAhorros(CuentaBancaria):
             print("No puede ingresar una cantidad negativa")
         else:
             self.saldo = self.saldo + cantidaddeposito
-            print(f"{self.nombre} has ingresado {cantidaddeposito}, Tu saldo ahora es de: {self.saldo}€")
+            print(
+                f"{self.nombre} has ingresado {cantidaddeposito}, Tu saldo ahora es de: {self.saldo}€")
 
     def retirar(self, cantidadretirada):
         if (cantidadretirada + 5) <= self.saldo and cantidadretirada > 0:
             self.saldo = self.saldo - cantidadretirada - 5
-            print(f"{self.nombre} has retirado: {cantidadretirada} - 5€ de comision de retiro, Saldo actual:{self.saldo}.")
+            print(
+                f"{self.nombre} has retirado: {cantidadretirada} - 5€ de comision de retiro, Saldo actual:{self.saldo}.")
         elif cantidadretirada < 0:
             print("No puede retirar una cantidad negativa")
         else:

@@ -6,12 +6,6 @@ def menu_opciones():
     for key, value in menu.items():
         print(f"Presione {key} para: {value}")
 
-
-def crear_animal(nombre, especie, edad, peso, sonido):
-    f"a{animales}" =
-    animales.append
-
-
 class Animal:
     def __init__(self, nombre, especie, edad, peso, sonido):
         self.nombre = nombre
@@ -83,12 +77,11 @@ class Clinica:
 a1 = Animal("firulais", "perro", 7, 12, "GUAU")
 a2 = Animal("michi", "gato", 4, 5, "MIAU")
 
+
 animales = [a1, a2]
 
 menu_opciones()
 opciones = int(input("Indique una opcion:\n"))
-match opciones:
-    case 1:
 
 clinica = Clinica()
 

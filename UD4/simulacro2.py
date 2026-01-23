@@ -74,9 +74,11 @@ class Biblioteca:
         self.lista_materiales.append(material)
 
     def mostrar_materiales(self):
-        lista_mostrar
+        lista_mostrar=[]
         for i in self.lista_materiales:
-            return f"{i.mostrar_info()}"
+            lista_mostrar.append(i.mostrar_info())
+        
+        return lista_mostrar
 
     def buscar_por_titulo(self, titulo):
         for i in self.lista_materiales:
@@ -91,4 +93,4 @@ revista1 = Revista("Programacion Hoy", "Alan walker", 2021, 42)
 biblio.agregar_material(libro1)
 biblio.agregar_material(revista1)
 
-biblio.mostrar_materiales()
+print(biblio.mostrar_materiales())

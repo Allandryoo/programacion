@@ -1,0 +1,4 @@
+Caterpie,planta,30,40
+Bulbasur,agua,27,50
+Charizard,fuego,31,50
+Aerodactyl,volador,33,46

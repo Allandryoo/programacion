@@ -1,12 +1,15 @@
 almacen=[]
-with open(r"C:\Users\ALLANDRYOSANTOSDACON\Documents\programacion_sjo\UD4\Pokemon\pokemons.txt") as lista_pokemons:
-    for linea in lista_pokemons:
-        almacen.append(linea.strip())
-print(almacen)
-for i in almacen:
-    print(i)
 
 def almacen_pokemon():
+    pass        
+with open(r"C:\Users\ALLANDRYOSANTOSDACON\Documents\programacion_sjo\UD4\Pokemon\pokemons.txt") as lista_pokemons:
+    for linea in lista_pokemons:
+            almacen.append(linea.strip())
+print(almacen)
+for i,j,h,l in almacen:
+    print(i, j, h, l)
+
+
     planta = 0
     volador = 0
     fuego = 0

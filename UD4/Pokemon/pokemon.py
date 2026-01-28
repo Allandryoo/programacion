@@ -59,6 +59,20 @@ class PokemonVolador(Pokemon):
         def ataque_especial(self):
             self.ataque *= 2
 
+class Mapa:
+    def __init__(self, lado):
+        self.lado = lado
+
+    def coordenadas(self): 
+        for y in range(1,self.lado+1): 
+            for x in range(1,self.lado+1): 
+                print(f"({x},{y})", end=" ")
+            print()
+    
+    def mapa_detallado(self, lista):
+        self.coordenadas()
+
+
 def procesar_linea(linea):
     campos = []
     actual = ""
@@ -77,19 +91,17 @@ def procesar_linea(linea):
     ataque = int(campos[2])
     defensa = int(campos[3])
 
-    # -----------------------------
     # Crear el objeto Pokémon correcto
-    # -----------------------------
-    if tipo == "planta":
-        return PokemonPlanta(nombre, tipo, ataque, defensa, 100)
-    elif tipo == "agua":
-        return PokemonAgua(nombre, tipo, ataque, defensa, 100)
-    elif tipo == "fuego":
-        return PokemonFuego(nombre, tipo, ataque, defensa, 100)
-    elif tipo == "volador":
-        return PokemonVolador(nombre, tipo, ataque, defensa, 100)
-    else:
-        return Pokemon(nombre, tipo, ataque, defensa, 100)
+    match tipo:
+        case "planta":
+            return PokemonPlanta(nombre, tipo, ataque, defensa, 100)
+        case "agua":
+            return PokemonAgua(nombre, tipo, ataque, defensa, 100)
+        case "fuego":
+            return PokemonFuego(nombre, tipo, ataque, defensa, 100)
+        case "volador":
+            return PokemonVolador(nombre, tipo, ataque, defensa, 100)
+
 
 almacen = []
 
@@ -105,14 +117,20 @@ agua=0
 volador=0
 for i in almacen:
 
-    if i.tipo.lower() == "planta":
-        planta =planta +1
-    elif i.tipo.lower() == "fuego":
-        fuego +=1
-    elif i.tipo.lower() == "agua":
-        agua +=1
-    elif i.tipo.lower() == "volador":
-        volador +=1
+    match i.tipo.lower():
+
+        case "planta":
+            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra agua")
+            planta +=1
+        case "fuego":
+            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra planta")
+            fuego +=1
+        case "agua":
+            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra fuego")
+            agua +=1
+        case "volador":
+            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra roca")
+            volador +=1
 
     if len(almacen) - (planta + fuego + agua + volador) == 0:
         print(f"Pokemons tipo Planta: {planta}")
@@ -120,3 +138,8 @@ for i in almacen:
         print(f"Pokemons tipo Agua: {agua}")
         print(f"Pokemons tipo Volador: {volador}")
         print(f"Total de Pokemons añadidos: {planta + fuego + agua + volador}")
+
+
+mapa_pokemon = Mapa(5)
+
+mapa_pokemon.coordenadas()

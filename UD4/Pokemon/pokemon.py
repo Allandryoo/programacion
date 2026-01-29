@@ -1,3 +1,6 @@
+import random
+
+
 class Pokemon:
     def __init__(self, nombre, tipo, ataque, defensa, ps):
         self.nombre = nombre
@@ -63,16 +66,18 @@ class Mapa:
     def __init__(self, lado):
         self.lado = lado
 
-    def coordenadas(self): 
+        self.listavacia=[]
+
+    def coordenada(self, x, y):
+        lista=[[almacen[random.randint(0,len(almacen)-1)] for j in range(0,self.lado)]for i in range(0,self.lado)]
+        print(lista)
+
+    def mostrar_mapa(self): 
         for y in range(1,self.lado+1): 
             for x in range(1,self.lado+1): 
                 print(f"({x},{y})", end=" ")
             print()
     
-    def mapa_detallado(self, lista):
-        self.coordenadas()
-
-
 def procesar_linea(linea):
     campos = []
     actual = ""
@@ -84,14 +89,13 @@ def procesar_linea(linea):
         else:
             actual += c
 
-    campos.append(actual)  # último campo
+    campos.append(actual)
 
     nombre = campos[0]
     tipo = campos[1].lower()
     ataque = int(campos[2])
     defensa = int(campos[3])
 
-    # Crear el objeto Pokémon correcto
     match tipo:
         case "planta":
             return PokemonPlanta(nombre, tipo, ataque, defensa, 100)
@@ -101,7 +105,6 @@ def procesar_linea(linea):
             return PokemonFuego(nombre, tipo, ataque, defensa, 100)
         case "volador":
             return PokemonVolador(nombre, tipo, ataque, defensa, 100)
-
 
 almacen = []
 
@@ -142,4 +145,6 @@ for i in almacen:
 
 mapa_pokemon = Mapa(5)
 
-mapa_pokemon.coordenadas()
+mapa_pokemon.mostrar_mapa()
+mapa_pokemon.coordenada(0,4)
+#mapa_pokemon.mapa_detallado(almacen)

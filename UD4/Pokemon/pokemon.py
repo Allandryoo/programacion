@@ -1,6 +1,5 @@
 import random
 
-
 class Pokemon:
     def __init__(self, nombre, tipo, ataque, defensa, ps):
         self.nombre = nombre
@@ -65,19 +64,62 @@ class PokemonVolador(Pokemon):
 class Mapa:
     def __init__(self, lado):
         self.lado = lado
-
+        self.mapa = []
         self.listavacia=[]
 
-    def coordenada(self, x, y):
-        lista=[[almacen[random.randint(0,len(almacen)-1)] for j in range(0,self.lado)]for i in range(0,self.lado)]
-        print(lista)
-
-    def mostrar_mapa(self): 
+    def generar_mapa(self): 
         for y in range(1,self.lado+1): 
             for x in range(1,self.lado+1): 
-                print(f"({x},{y})", end=" ")
-            print()
+                self.mapa.append([None, (x,y)])
+
+    def mostrar_mapa(self):
+        linea=""
+        for i in self.mapa:
+            if i[0] == None:
+                linea += str(f"[Ninguno ,{i[1]}]")
+            else:
+                linea += str(f"[{i[0].get_nombre()},{i[1]}]")
+            if i[1][0] == self.lado:
+                print(linea)
+                linea=""
     
+    def pokemon_mapa(self, pokemon, x, y):
+
+        for i in self.mapa:
+            if i[1][0] == x and i[1][1] == y:
+                if i[0] == None:
+                    i[0] = pokemon
+        
+    def añadir_pokemons(self):
+        for i in self.mapa:
+                if i[0] == None:
+                    i[0] = almacen[random.randint(0,len(almacen)-1)]
+
+class Personaje:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    def mover_izquierda(self):
+        self.x -= 1
+
+    def mover_derecha(self):
+        self.x += 1
+
+    def mover_arriba(self):
+        self.y += 1
+
+    def mover_abajo(self):
+        self.y -= 1
+
+class Jugador(Personaje):
+    def __init__(self, x, y, nombre):
+        super().__init__(x, y)
+        self.nombre = nombre
+
+    def capturar_pokemon(self, pokemon):
+        pass
+
 def procesar_linea(linea):
     campos = []
     actual = ""
@@ -142,9 +184,11 @@ for i in almacen:
         print(f"Pokemons tipo Volador: {volador}")
         print(f"Total de Pokemons añadidos: {planta + fuego + agua + volador}")
 
-
 mapa_pokemon = Mapa(5)
-
+mapa_pokemon.generar_mapa()
+mapa_pokemon.pokemon_mapa(almacen[random.randint(0,len(almacen)-1)], 4, 4)
+mapa_pokemon.pokemon_mapa(almacen[random.randint(0,len(almacen)-1)], 2, 2)
+mapa_pokemon.añadir_pokemons()
 mapa_pokemon.mostrar_mapa()
-mapa_pokemon.coordenada(0,4)
 #mapa_pokemon.mapa_detallado(almacen)
+

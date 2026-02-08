@@ -3,8 +3,8 @@ pi = 3.14
 
 class circulo:
 
-    def __init__(self, radio):
-        self.radio = radio
+    def __init__(self, radios):
+        self.radio = radios
 
     def calcular_area(self):
         return pi * (self.radio**2)

@@ -9,8 +9,8 @@ class rectangulo:
 
 
 base = int(input("Inidica la base\n"))
-altura = int(input("Indica la altura\n"))
+alturas = int(input("Indica la altura\n"))
 
-area = rectangulo(base, altura)
+area = rectangulo(base, alturas)
 
 print("El area del rectangulo es " + str(area.calcular_area()))

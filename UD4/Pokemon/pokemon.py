@@ -178,7 +178,12 @@ def procesar_linea(linea):
             return PokemonFuego(nombre, tipo, ataque, defensa)
         case "volador":
             return PokemonVolador(nombre, tipo, ataque, defensa)
-
+def combate_pokemon():
+    
+def escoger_pokemon():
+    print("Escoge un pokemon\n")
+    for indice,valor in enumerate(p1.inventario):
+        print(f"{indice}: {valor.mostrar_info()}")
 
 almacen = []
 
@@ -234,3 +239,31 @@ mapa_pokemon.añadir_pokemons()
 mapa_pokemon.mostrar_mapa()
 print("hola")
 mapa_pokemon.mostrar_mapa()
+salir=True
+print(p1.x,p1.y)
+while salir:
+    move=input("donde quieres ir?")
+
+    match move:
+
+        case "w":
+            if p1.y<mapa_pokemon.lado:
+                p1.mover_arriba()
+        case "d":
+            if p1.x<mapa_pokemon.lado:
+                p1.mover_derecha()
+        case "s":
+            if p1.y>1:
+                p1.mover_abajo()
+        case "a":
+            if p1.x>1:
+                p1.mover_izquierda()
+
+    print(f"posicion acutal: ({p1.x},{p1.y})")
+    for i in mapa_pokemon.mapa:
+        if i[1][0] == p1.x and i[1][1] == p1.y:
+            if i[0] != None:
+                print("Pokemon encontrado")
+                escoger_pokemon()
+            else:
+                print("no hay pokemon")

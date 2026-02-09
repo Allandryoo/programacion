@@ -233,7 +233,4 @@ mapa_pokemon.pokemon_mapa(almacen[random.randint(0, len(almacen)-1)], 2, 2)
 mapa_pokemon.añadir_pokemons()
 mapa_pokemon.mostrar_mapa()
 print("hola")
-print(mapa_pokemon.mostrar_mapa())
-
-if p1.x == mapa_pokemon.mapa[1][0] and p1.y == mapa_pokemon.mapa[1][1]:
-    print("pokemon encontrado")
+mapa_pokemon.mostrar_mapa()

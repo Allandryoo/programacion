@@ -1,6 +1,5 @@
 import random
 
-
 class Pokemon:
     def __init__(self, nombre, tipo, ataque, defensa):
         self.nombre = nombre
@@ -8,6 +7,8 @@ class Pokemon:
         self.ataque = ataque
         self.defensa = defensa
         self.ps = 100
+        self.psactual = self.ps
+        self.psmax = self.ps
 
     def get_nombre(self):
         return self.nombre
@@ -30,7 +31,6 @@ class Pokemon:
     def mostrar_info(self):
         return f"Nombre: {self.nombre} | Tipo: {self.tipo} | ATK: {self.ataque} | DEF: {self.defensa} | PS: {self.ps}"
 
-
 class PokemonPlanta(Pokemon):
     def __init__(self, nombre, tipo, ataque, defensa):
         super().__init__(nombre, tipo, ataque, defensa)
@@ -38,7 +38,6 @@ class PokemonPlanta(Pokemon):
 
         def ataque_especial(self):
             self.ataque *= 2
-
 
 class PokemonAgua(Pokemon):
     def __init__(self, nombre, tipo, ataque, defensa):
@@ -48,7 +47,6 @@ class PokemonAgua(Pokemon):
         def ataque_especial(self):
             self.ataque *= 2
 
-
 class PokemonFuego(Pokemon):
     def __init__(self, nombre, tipo, ataque, defensa):
         super().__init__(nombre, tipo, ataque, defensa)
@@ -56,7 +54,6 @@ class PokemonFuego(Pokemon):
 
         def ataque_especial(self):
             self.ataque *= 2
-
 
 class PokemonVolador(Pokemon):
     def __init__(self, nombre, tipo, ataque, defensa):
@@ -66,12 +63,10 @@ class PokemonVolador(Pokemon):
         def ataque_especial(self):
             self.ataque *= 2
 
-
 class Mapa:
     def __init__(self, lado):
         self.lado = lado
         self.mapa = []
-        self.listavacia = []
 
     def generar_mapa(self):
         for y in range(1, self.lado+1):
@@ -90,7 +85,6 @@ class Mapa:
                 linea = ""
 
     def pokemon_mapa(self, pokemon, x, y):
-
         for i in self.mapa:
             if i[1][0] == x and i[1][1] == y:
                 if i[0] == None:
@@ -100,7 +94,6 @@ class Mapa:
         for i in self.mapa:
             if i[0] == None and random.randint(0, 2) == random.randint(0, 2):
                 i[0] = almacen[random.randint(0, len(almacen)-1)]
-
 
 class Personaje:
     def __init__(self, x, y):
@@ -178,12 +171,46 @@ def procesar_linea(linea):
             return PokemonFuego(nombre, tipo, ataque, defensa)
         case "volador":
             return PokemonVolador(nombre, tipo, ataque, defensa)
-def combate_pokemon():
     
 def escoger_pokemon():
     print("Escoge un pokemon\n")
     for indice,valor in enumerate(p1.inventario):
         print(f"{indice}: {valor.mostrar_info()}")
+    
+    num_pokemon=int(input("Indica el numero del pokemon para seleccionarlo\n"))
+    return num_pokemon
+
+def combate_pokemon(mipokemon,pokemonsalvaje):
+    miataque=mipokemon.get_ataque()
+    mipsactual=mipokemon.get_ps()
+    mipsmax=mipokemon.get_ps()
+    midef=mipokemon.get_defensa()
+    enemyataque=pokemonsalvaje.get_ataque()
+    enemypsmax=pokemonsalvaje.get_ps()
+    enemypsactual=pokemonsalvaje.get_ps()
+    enemydef=pokemonsalvaje.get_defensa()
+
+    if mipokemon.tipo == "planta" and pokemonsalvaje.tipo == "agua":
+        miataque=mipokemon.ataque_especial()
+        enemyataque=pokemonsalvaje.get_ataque()/2
+
+    if mipokemon.tipo == "fuego" and pokemonsalvaje.tipo == "planta":
+        miataque=mipokemon.ataque_especial()
+        enemyataque=pokemonsalvaje.get_ataque()/2
+
+    if mipokemon.tipo == "agua" and pokemonsalvaje.tipo == "fuego":
+        miataque=mipokemon.ataque_especial()
+        enemyataque=pokemonsalvaje.get_ataque()/2
+
+    luchar=input("Que quieres hacer")
+
+    match luchar:
+
+        case "a":
+            
+        case "c":
+
+
 
 almacen = []
 
@@ -260,10 +287,13 @@ while salir:
                 p1.mover_izquierda()
 
     print(f"posicion acutal: ({p1.x},{p1.y})")
+    mapa_pokemon.mostrar_mapa()
     for i in mapa_pokemon.mapa:
         if i[1][0] == p1.x and i[1][1] == p1.y:
             if i[0] != None:
-                print("Pokemon encontrado")
-                escoger_pokemon()
+                print(f"Te has encontrado a {i[0].get_nombre()} de tipo {i[0].get_tipo()}")
+                select_pokemon=(p1.inventario[escoger_pokemon()])
+                print(f"Te escojo a ti {select_pokemon.get_nombre()}")
+                
             else:
                 print("no hay pokemon")

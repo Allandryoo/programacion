@@ -5,7 +5,10 @@ class Curso:
     def __init__(self, codigo, titulo, horas, precio):
         self.codigo = codigo
         self.titulo = titulo
-        self.horas = horas
+        if horas <= 0:
+            self.horas =0
+        else:
+            self.horas = horas
         self.precio = precio
 
     def mostrar_info(self):

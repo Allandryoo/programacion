@@ -41,6 +41,9 @@ class PokemonPlanta(Pokemon):
         def ataque_especial(self):
             self.ataque *= 2
 
+        def elemento(self):
+            return "debil contra fuego y fuerte contra agua"
+
 
 class PokemonAgua(Pokemon):
     def __init__(self, nombre, tipo, ataque, defensa):
@@ -49,6 +52,9 @@ class PokemonAgua(Pokemon):
 
         def ataque_especial(self):
             self.ataque *= 2
+
+        def elemento(self):
+            return "debil contra planta y fuerte contra fuego"
 
 
 class PokemonFuego(Pokemon):
@@ -59,6 +65,9 @@ class PokemonFuego(Pokemon):
         def ataque_especial(self):
             self.ataque *= 2
 
+        def elemento(self):
+            return "debil contra agua y fuerte contra planta"
+
 
 class PokemonVolador(Pokemon):
     def __init__(self, nombre, tipo, ataque, defensa):
@@ -67,6 +76,9 @@ class PokemonVolador(Pokemon):
 
         def ataque_especial(self):
             self.ataque *= 2
+
+        def elemento(self):
+            return "debil contra roca y fuerte contra planta"
 
 
 class Mapa:
@@ -98,8 +110,11 @@ class Mapa:
 
     def añadir_pokemons(self):
         for i in self.mapa:
-            if i[0] == None and random.randint(0, 2) == random.randint(0, 2):
-                i[0] = almacen[random.randint(0, len(almacen)-1)]
+            if i[0] == None and random.randint(0, 1) == random.randint(0, 1):
+                if i[1][0] == 1 and i[1][1] == 1:
+                    i[0] = None
+                else:
+                    i[0] = almacen[random.randint(0, len(almacen)-1)]
 
 
 class Personaje:
@@ -126,16 +141,15 @@ class Jugador(Personaje):
         self.nombre = nombre
         self.inventario = []
 
-    def capturar_pokemon(self, pokemon):
-        vida_max = pokemon.get_ps()
-        if pokemon.get_ps() > (vida_max*0.75):
-            probabilidad_captura = 30
-        elif pokemon.get_ps() <= (vida_max*0.75):
-            probabilidad_captura = 50
-        elif pokemon.get_ps() <= (vida_max*0.50):
-            probabilidad_captura = 70
-        elif pokemon.get_ps() <= (vida_max*0.25):
+    def capturar_pokemon(self, pokemon, psactual, psmax):
+        if psactual <= (psmax * 0.25):
             probabilidad_captura = 100
+        elif psactual <= (psmax * 0.50):
+            probabilidad_captura = 70
+        elif psactual <= (psmax * 0.75):
+            probabilidad_captura = 50
+        else:
+            probabilidad_captura = 30
 
         exito_captura = random.randint(0, 100)
 
@@ -209,20 +223,28 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
     elif mipokemon.tipo == "agua" and pokemonsalvaje.tipo == "fuego":
         miataque = mipokemon.ataque_especial()
         enemyataque = pokemonsalvaje.get_ataque()/2
+    elif mipokemon.tipo == "volador" and pokemonsalvaje.tipo == "planta":
+        miataque = mipokemon.ataque_especial()
+        enemyataque = pokemonsalvaje.get_ataque()/2
 
     while enemypsactual >= 0 or mipsactual >= 0:
 
         print(f"{mipokemon.get_nombre()} salud:{mipsactual} | | {pokemonsalvaje.get_nombre()} salud:{enemypsactual}")
-
-        luchar = input("Que quieres hacer :(a)atacar | (c)capturar")
+        print(
+            f"ATK: {miataque} | DEF: {midef} | | ATK: {enemyataque} | DEF: {enemydef}")
+        luchar = input("Que quieres hacer :(a)atacar | (c)capturar\n")
 
         match luchar.lower():
 
             case "a":
-                if miataque <= enemyataque:
-                    print("miss")
+                if miataque >= enemydef:
+                    enemypsactual = enemypsactual - (miataque - enemydef)
+                    enemydef = 0
                 else:
-                    print("Daño")
+                    enemydef = enemydef - miataque
+
+            case "c":
+                p1.capturar_pokemon(pokemonsalvaje, enemypsactual, enemypsmax)
 
 
 almacen = []
@@ -233,34 +255,6 @@ with open(r"UD4\Pokemon\pokemons.txt") as lista_pokemons:
         pokemon = procesar_linea(contenedor_texto)
         almacen.append(pokemon)
 
-planta = 0
-fuego = 0
-agua = 0
-volador = 0
-for i in almacen:
-
-    match i.tipo.lower():
-
-        case "planta":
-            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra agua")
-            planta += 1
-        case "fuego":
-            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra planta")
-            fuego += 1
-        case "agua":
-            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra fuego")
-            agua += 1
-        case "volador":
-            print(f"{i.nombre} es un pokemon de tipo {i.tipo}, fuerte contra roca")
-            volador += 1
-
-    if len(almacen) - (planta + fuego + agua + volador) == 0:
-        print(f"Pokemons tipo Planta: {planta}")
-        print(f"Pokemons tipo Fuego: {fuego}")
-        print(f"Pokemons tipo Agua: {agua}")
-        print(f"Pokemons tipo Volador: {volador}")
-        print(f"Total de Pokemons añadidos: {planta + fuego + agua + volador}")
-
 mapa_pokemon = Mapa(5)
 mapa_pokemon.generar_mapa()
 mapa_pokemon.mostrar_mapa()
@@ -270,18 +264,13 @@ p1.llamar_pokemon()
 p1.llamar_pokemon()
 for j in p1.inventario:
     print(j.get_nombre())
-for i in almacen:
-    print(i.mostrar_info())
 
-mapa_pokemon.pokemon_mapa(almacen[random.randint(0, len(almacen)-1)], 4, 4)
-mapa_pokemon.pokemon_mapa(almacen[random.randint(0, len(almacen)-1)], 2, 2)
 mapa_pokemon.añadir_pokemons()
 mapa_pokemon.mostrar_mapa()
-print("hola")
-mapa_pokemon.mostrar_mapa()
 salir = True
-print(p1.x, p1.y)
+
 while salir:
+    print(f"posicion acutal: ({p1.x},{p1.y})")
     move = input("donde quieres ir?")
 
     match move:
@@ -298,8 +287,9 @@ while salir:
         case "a":
             if p1.x > 1:
                 p1.mover_izquierda()
+        case _:
+            print("Opcion erronea")
 
-    print(f"posicion acutal: ({p1.x},{p1.y})")
     mapa_pokemon.mostrar_mapa()
     for i in mapa_pokemon.mapa:
         if i[1][0] == p1.x and i[1][1] == p1.y:
@@ -309,6 +299,3 @@ while salir:
                 select_pokemon = (p1.inventario[escoger_pokemon()])
                 print(f"Te escojo a ti {select_pokemon.get_nombre()}")
                 combate_pokemon(select_pokemon, i[0])
-
-            else:
-                print("no hay pokemon")

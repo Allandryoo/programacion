@@ -1,7 +1,5 @@
 import random
 
-from prueba import da
-
 
 class Pokemon:
     def __init__(self, nombre, tipo, ataque, defensa):
@@ -165,7 +163,8 @@ class Jugador(Personaje):
 
         if probabilidad_captura >= exito_captura:
             p1.inventario.append(pokemon)
-            print(f"{pokemon.get_nombre()} ha sido capturado y se ha añadido a tu inventario")
+            print(
+                f"{pokemon.get_nombre()} ha sido capturado y se ha añadido a tu inventario")
         else:
             print(f"{pokemon.get_nombre()} ha escapado")
 
@@ -174,6 +173,7 @@ class Jugador(Personaje):
 
         self.inventario.append(almacen[numero_random])
         almacen.pop(numero_random)
+
 
 def procesar_linea(linea):
     campos = []
@@ -203,6 +203,7 @@ def procesar_linea(linea):
         case "volador":
             return PokemonVolador(nombre, tipo, ataque, defensa)
 
+
 def escoger_pokemon():
     print("Escoge un pokemon\n")
     for indice, valor in enumerate(p1.inventario):
@@ -211,6 +212,7 @@ def escoger_pokemon():
     num_pokemon = int(
         input("Indica el numero del pokemon para seleccionarlo\n"))
     return num_pokemon
+
 
 def combate_pokemon(mipokemon, pokemonsalvaje):
 
@@ -225,21 +227,22 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
 
     if mipokemon.tipo == "planta" and pokemonsalvaje.tipo == "agua":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque /2
+        enemyataque = enemyataque / 2
     elif mipokemon.tipo == "fuego" and pokemonsalvaje.tipo == "planta":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque /2
+        enemyataque = enemyataque / 2
     elif mipokemon.tipo == "agua" and pokemonsalvaje.tipo == "fuego":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque /2
+        enemyataque = enemyataque / 2
     elif mipokemon.tipo == "volador" and pokemonsalvaje.tipo == "planta":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque /2
+        enemyataque = enemyataque / 2
 
     while True:
 
         print(f"{mipokemon.get_nombre()} salud:{mipsactual} | | {pokemonsalvaje.get_nombre()} salud:{enemypsactual}")
-        print(f"ATK: {miataque} | DEF: {midef} | | ATK: {enemyataque} | DEF: {enemydef}")
+        print(
+            f"ATK: {miataque} | DEF: {midef} | | ATK: {enemyataque} | DEF: {enemydef}")
 
         print(f"Turno de {p1.nombre}:")
         luchar = input("(A)atacar | (C)capturar | (H)huir\n")
@@ -251,28 +254,32 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
                 if miataque >= enemydef:
                     enemypsactual = enemypsactual - (miataque - enemydef)
                     print(f"{mipokemon.get_nombre()} ataca.")
-                    print(f"{mipokemon.get_nombre()} ha hecho {miataque-enemydef} de daño.")
+                    print(
+                        f"{mipokemon.get_nombre()} ha hecho {miataque-enemydef} de daño.")
                     enemydef = 0
                 else:
                     print(f"{mipokemon.get_nombre()} ataca.")
-                    print(f"{mipokemon.get_nombre()} ha quitado {miataque} de defensa.")
+                    print(
+                        f"{mipokemon.get_nombre()} ha quitado {miataque} de defensa.")
                     enemydef = enemydef - miataque
 
                 if enemypsactual <= 0:
                     print(f"{pokemonsalvaje.get_nombre()} ha muerto.")
                     return True
-                
+
                 print(f"Turno de {pokemonsalvaje.get_nombre()}")
                 if enemyataque >= midef:
                     mipsactual = mipsactual - (enemyataque - midef)
                     print(f"{pokemonsalvaje.get_nombre()} ataca.")
-                    print(f"{pokemonsalvaje.get_nombre()} hace {enemyataque - midef} de daño.\n")
+                    print(
+                        f"{pokemonsalvaje.get_nombre()} hace {enemyataque - midef} de daño.\n")
                     midef = 0
                 else:
                     print(f"{pokemonsalvaje.get_nombre()} ataca.")
-                    print(f"{pokemonsalvaje.get_nombre()} ha quitado {enemyataque} de defensa.")
+                    print(
+                        f"{pokemonsalvaje.get_nombre()} ha quitado {enemyataque} de defensa.")
                     midef = (midef - enemyataque)
-                
+
                 if mipsactual <= 0:
                     print(f"Tu pokemon {mipokemon.get_nombre()} a muerto\n")
                     p1.inventario.remove(mipokemon)
@@ -286,14 +293,15 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
             case "c":
                 p1.capturar_pokemon(pokemonsalvaje, enemypsactual, enemypsmax)
                 return True
-            
+
             case "h":
                 mipokemon.set_ps(mipsactual)
                 return False
-            
+
+
 opciones = {
     "W": "Mover arriba.",
-    "D": "Mover derecha.", 
+    "D": "Mover derecha.",
     "S": "Mover abajo.",
     "A": "Mover izquierda.",
     "I": "Mirar inventario pokemon.",
@@ -343,7 +351,7 @@ while salir:
                 p1.mover_izquierda()
         case "i":
             if len(p1.inventario) == 0:
-                print(f"{p1.nombre} no tienes pokemons.")
+                print(f"{p1.nombre} no tienes pokemons, llama a un pokemon.")
             else:
                 for i in p1.inventario:
                     print(i.mostrar_info())
@@ -355,7 +363,7 @@ while salir:
             print("Opcion erronea")
 
     for i in mapa_pokemon.mapa:
-        
+
         if i[1][0] == p1.x and i[1][1] == p1.y:
             if i[0] != None:
                 print(
@@ -365,15 +373,16 @@ while salir:
                 if len(p1.inventario) == 0:
                     print("Como no tienes pokemons, te daremos uno\n")
                     p1.llamar_pokemon()
-                select_pokemon = (p1.inventario[escoger_pokemon()])
-                print(f"Te escojo a ti {select_pokemon.get_nombre()}")
-                resultado = combate_pokemon(select_pokemon, i[0])
 
-                match resultado:
+                while i[0] != None:
+                    select_pokemon = (p1.inventario[escoger_pokemon()])
+                    print(f"Te escojo a ti {select_pokemon.get_nombre()}")
+                    resultado = combate_pokemon(select_pokemon, i[0])
 
-                    case True:
-                        i[0]=None
-                    case False:
-                        pass
-                    case _:
-                        combate_pokemon(resultado, i[0])
+                    match resultado:
+
+                        case True:
+                            i[0] = None
+                            break
+                        case False:
+                            break

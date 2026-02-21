@@ -1,24 +1,22 @@
-class p:
-    def __init__(self, nom):
-        self.nom = nom
-        self.lsita=[]
+Diccionario = {}
 
-    def añadir(self, aña):
-        self.lsita.append(aña)
+palabras = ["Arbol", "Astronomía", "Algoritmo", "Abaco", "Alianza",
+            "Barco", "Biología", "Brújula", "Binario", "Ballena",
+            "Cielo", "Código", "Ciencia", "Computadora", "Cristal",
+            "Dado", "Dinosaurio", "Delfín", "Datos", "Diamante",
+            "Estrella", "Energía", "Espejo", "Elefante", "Enigma",
+            "Fuego", "Física", "Fuente", "Flecha", "Fénix",
+            "Galaxia", "Globo", "Gato", "Gravedad", "Guitarra",
+            "Hierro", "Horizonte", "Hielo", "Historia", "Hormiga",
+            "Isla", "Idea", "Infinito", "Iguana", "Imagen",
+            "Jardín", "Juego", "Júpiter", "Joya", "Jirafa"]
 
-class da:
-    def __init__(self, nom, tip):
-        self.nom = nom
-        self.tip = tip
-p1=p("a")
 
-a=da("das","dsa")
-b=da("afs","fas")
+for l in palabras:
+    primeraletra = l[0].upper()
+    if primeraletra not in Diccionario:
+        Diccionario[primeraletra] = []
 
-lista=["hola","adios","ay"]
-p1.añadir(a)
-p1.añadir(b)
+    Diccionario[primeraletra].append(l)
 
-p1.lsita.remove(a)
-for i in p1.lsita:
-    print(i.nom)
+print(Diccionario)

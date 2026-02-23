@@ -39,7 +39,7 @@ class PokemonPlanta(Pokemon):
         self.tipo = "Planta"
 
     def ataque_especial(self):
-        atkesp = self.ataque = self.ataque * 2
+        atkesp = self.ataque * 1.5
         return atkesp
 
     def elemento(self):
@@ -52,7 +52,7 @@ class PokemonAgua(Pokemon):
         self.tipo = "Agua"
 
     def ataque_especial(self):
-        atkesp = self.ataque = self.ataque * 2
+        atkesp = self.ataque * 1.5
         return atkesp
 
     def elemento(self):
@@ -65,7 +65,7 @@ class PokemonFuego(Pokemon):
         self.tipo = "Fuego"
 
     def ataque_especial(self):
-        atkesp = self.ataque = self.ataque * 2
+        atkesp = self.ataque * 1.5
         return atkesp
 
     def elemento(self):
@@ -78,7 +78,7 @@ class PokemonVolador(Pokemon):
         self.tipo = "Volador"
 
     def ataque_especial(self):
-        atkesp = self.ataque = self.ataque * 2
+        atkesp = self.ataque * 1.5
         return atkesp
 
     def elemento(self):
@@ -165,8 +165,10 @@ class Jugador(Personaje):
             p1.inventario.append(pokemon)
             print(
                 f"{pokemon.get_nombre()} ha sido capturado y se ha añadido a tu inventario")
+            return True
         else:
             print(f"{pokemon.get_nombre()} ha escapado")
+            return False
 
     def llamar_pokemon(self):
         numero_random = random.randint(0, len(almacen)-1)
@@ -225,18 +227,21 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
     enemypsactual = pokemonsalvaje.get_ps()
     enemydef = pokemonsalvaje.get_defensa()
 
-    if mipokemon.tipo == "planta" and pokemonsalvaje.tipo == "agua":
+    if mipokemon.tipo == "Planta" and pokemonsalvaje.tipo == "Agua":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque / 2
-    elif mipokemon.tipo == "fuego" and pokemonsalvaje.tipo == "planta":
+        enemyataque = enemyataque / 1.5
+        
+    elif mipokemon.tipo == "Fuego" and pokemonsalvaje.tipo == "Planta":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque / 2
-    elif mipokemon.tipo == "agua" and pokemonsalvaje.tipo == "fuego":
+        enemyataque = enemyataque / 1.5
+        
+    elif mipokemon.tipo == "Agua" and pokemonsalvaje.tipo == "Fuego":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque / 2
-    elif mipokemon.tipo == "volador" and pokemonsalvaje.tipo == "planta":
+        enemyataque = enemyataque / 1.5
+        
+    elif mipokemon.tipo == "Volador" and pokemonsalvaje.tipo == "Planta":
         miataque = mipokemon.ataque_especial()
-        enemyataque = enemyataque / 2
+        enemyataque = enemyataque / 1.5
 
     while True:
 
@@ -296,7 +301,7 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
 
             case "h":
                 mipokemon.set_ps(mipsactual)
-                return False
+                return True
 
 
 opciones = {
@@ -384,5 +389,5 @@ while salir:
                         case True:
                             i[0] = None
                             break
-                        case False:
-                            break
+                        case _:
+                            combate_pokemon(resultado, i[0])

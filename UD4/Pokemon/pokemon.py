@@ -243,6 +243,22 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
         miataque = mipokemon.ataque_especial()
         enemyataque = enemyataque / 1.5
 
+    elif pokemonsalvaje.tipo == "Planta" and mipokemon.tipo == "Agua":
+        miataque = miataque / 1.5
+        enemyataque = pokemonsalvaje.ataque_especial()
+        
+    elif pokemonsalvaje.tipo == "Fuego" and mipokemon.tipo == "Planta":
+        miataque = miataque / 1.5
+        enemyataque = pokemonsalvaje.ataque_especial()
+        
+    elif pokemonsalvaje.tipo == "Agua" and mipokemon.tipo == "Fuego":
+        miataque = miataque / 1.5
+        enemyataque = pokemonsalvaje.ataque_especial()
+        
+    elif pokemonsalvaje.tipo == "Volador" and mipokemon.tipo == "Planta":
+        miataque = miataque / 1.5
+        enemyataque = pokemonsalvaje.ataque_especial()
+
     while True:
 
         print(f"{mipokemon.get_nombre()} salud:{mipsactual} | | {pokemonsalvaje.get_nombre()} salud:{enemypsactual}")

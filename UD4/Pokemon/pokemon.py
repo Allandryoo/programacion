@@ -243,6 +243,7 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
         miataque = mipokemon.ataque_especial()
         enemyataque = enemyataque / 1.5
 
+
     elif pokemonsalvaje.tipo == "Planta" and mipokemon.tipo == "Agua":
         miataque = miataque / 1.5
         enemyataque = pokemonsalvaje.ataque_especial()

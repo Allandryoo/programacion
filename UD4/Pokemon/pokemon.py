@@ -230,32 +230,31 @@ def combate_pokemon(mipokemon, pokemonsalvaje):
     if mipokemon.tipo == "Planta" and pokemonsalvaje.tipo == "Agua":
         miataque = mipokemon.ataque_especial()
         enemyataque = enemyataque / 1.5
-        
+
     elif mipokemon.tipo == "Fuego" and pokemonsalvaje.tipo == "Planta":
         miataque = mipokemon.ataque_especial()
         enemyataque = enemyataque / 1.5
-        
+
     elif mipokemon.tipo == "Agua" and pokemonsalvaje.tipo == "Fuego":
         miataque = mipokemon.ataque_especial()
         enemyataque = enemyataque / 1.5
-        
+
     elif mipokemon.tipo == "Volador" and pokemonsalvaje.tipo == "Planta":
         miataque = mipokemon.ataque_especial()
         enemyataque = enemyataque / 1.5
 
-
     elif pokemonsalvaje.tipo == "Planta" and mipokemon.tipo == "Agua":
         miataque = miataque / 1.5
         enemyataque = pokemonsalvaje.ataque_especial()
-        
+
     elif pokemonsalvaje.tipo == "Fuego" and mipokemon.tipo == "Planta":
         miataque = miataque / 1.5
         enemyataque = pokemonsalvaje.ataque_especial()
-        
+
     elif pokemonsalvaje.tipo == "Agua" and mipokemon.tipo == "Fuego":
         miataque = miataque / 1.5
         enemyataque = pokemonsalvaje.ataque_especial()
-        
+
     elif pokemonsalvaje.tipo == "Volador" and mipokemon.tipo == "Planta":
         miataque = miataque / 1.5
         enemyataque = pokemonsalvaje.ataque_especial()
@@ -393,7 +392,7 @@ while salir:
                 i[0].elemento()
 
                 if len(p1.inventario) == 0:
-                    print("Como no tienes pokemons, te daremos uno\n")
+                    print("Como no tieness pokemons, te daremos uno\n")
                     p1.llamar_pokemon()
 
                 while i[0] != None:

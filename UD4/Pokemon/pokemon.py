@@ -392,7 +392,7 @@ while salir:
                 i[0].elemento()
 
                 if len(p1.inventario) == 0:
-                    print("Como no tieness pokemons, te daremos uno\n")
+                    print("Como no tienes pokemons, te daremos uno\n")
                     p1.llamar_pokemon()
 
                 while i[0] != None:
